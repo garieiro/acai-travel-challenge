@@ -13,6 +13,7 @@ I developed a simple application using Next.js, React and TypeScript. The applic
 - Next.js: React framework for server-side rendering and static website generation.
 - React: Library for building the user interface.
 - TypeScript: Chosen language
+- Prettier e ESLint
 
 
 ## Run the development server:

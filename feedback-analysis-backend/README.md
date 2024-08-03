@@ -33,6 +33,7 @@ summarization function with a specific prompt.
 - Hugging Face API
 - Node.js
 - Express
+- Postman (to test APIs)
 
 
 ## Run the development server:
