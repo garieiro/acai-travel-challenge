@@ -2,7 +2,7 @@ import mongoose, { Document, Schema } from "mongoose";
 
 // Defining the Document interface
 interface IFeedback extends Document {
-    userId: string;
+    userName: string;
     feedbackInput: string;
     sentimentEvaluation: {
         label: string;
@@ -14,7 +14,7 @@ interface IFeedback extends Document {
 
 // Defining the Schema
 const FeedbackSchema: Schema = new Schema({
-    userId: {type: String, required: true},
+    userName: {type: String, required: true},
     feedbackInput: {type: String, required: true},
     createdAt: {type: Date, default: Date.now},
     sentimentEvaluation: {

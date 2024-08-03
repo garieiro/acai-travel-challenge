@@ -14,7 +14,7 @@ export const createFeedback = async (req: Request, res: Response) => {
         const {sentiment, summary} = await llmAgent(feedbackInput.feedbackInput);
 
         const feedback = new Feedback({
-            userId: feedbackInput.userId,
+            userName: feedbackInput.userName,
             feedbackInput: feedbackInput.feedbackInput,
             sentimentEvaluation: {
                 label: sentiment.label,
@@ -39,9 +39,6 @@ export const getAllFeedbacks = async (req: Request, res: Response) => {
     try {
         const feedbacks = await Feedback.find();
 
-        if(feedbacks.length === 0){
-            res.status(200).json({message: 'No feedbacks to show!!'})
-        }
         res.status(200).json(feedbacks)
     }catch(error){
         if(error instanceof Error) {
@@ -65,30 +62,6 @@ export const getFeedbackById = async (req: Request, res: Response) => {
 
         if(!feedback) {
             return res.status(404).json({message: 'Feedback not found!!'})
-        }
-
-        res.status(200).json(feedback)
-    }catch(error){
-        if(error instanceof Error) {
-            res.status(400).json({error: error.message})
-        } else{
-            res.status(500).json({error: 'An unexpected error occured!!'})
-        }
-    }
-}
-
-// Get a Feedback by UserId
-export const getFeedbackByUserId = async (req: Request, res: Response) => {
-    try {
-        const userId = req.params.userId;
-
-        if(!userId) {
-            return res.status(400).json({message: 'UserId parameter is required!!'})
-        }
-
-        const feedback = await Feedback.find({userId: userId});
-        if(feedback.length === 0) {
-            return res.status(404).json({message: 'No feedbacks found for this user!!'})
         }
 
         res.status(200).json(feedback)
@@ -128,7 +101,13 @@ export const updateFeedback = async (req: Request, res: Response) => {
 // Delete a Feedback
 export const deleteFeedback = async (req: Request, res: Response) => {
     try {
-        const feedback = await Feedback.findByIdAndDelete(req.params.id);
+        const id = req.params.id;
+
+        if(!id) {
+            return res.status(400).json({message: 'Id is required!!'})
+        }
+        const feedback = await Feedback.findByIdAndDelete(id);
+
         if(!feedback) {
             return res.status(404).json({message: 'Feedback not found!!'})
         }
