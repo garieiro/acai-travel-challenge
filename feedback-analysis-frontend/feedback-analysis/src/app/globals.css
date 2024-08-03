@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #f0f0f0; /* Cor de fundo da página */
+  background-color: #f0f0f0; 
   padding: 20px;
 }
 
@@ -57,8 +57,8 @@ button {
   border-collapse: collapse;
   margin: 20px 0;
   font-size: 16px;
-  background-color: white; /* Fundo da tabela */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra da tabela */
+  background-color: white; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
 .feedback-table th,
